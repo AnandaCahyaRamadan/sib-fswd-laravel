@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -39,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $Validasi = $request->validate([
+        $validasi = $request->validate([
                 "name" => "required",
                 "email" => "required|unique:users,email",
                 "password" => "required|confirmed|min:8",
@@ -49,10 +50,10 @@ class UserController extends Controller
                 "avatar" => "image|file|max:2000"
             ]);
         if ($request->file('avatar')){
-            $Validasi ['avatar'] = $request->file('avatar')->store('post-avatar');
+            $validasi ['avatar'] = $request->file('avatar')->store('post-avatar');
         }
-        $Validasi['password'] = bcrypt($Validasi['password']);
-        User::create($Validasi);
+        $validasi['password'] = bcrypt($validasi['password']);
+        User::create($validasi);
         return redirect()->route('users.index');
     }
 
@@ -88,11 +89,33 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    
+     public function update(Request $request, User $user)
+     {
+         $validasi = $request->validate([
+             "name" => "required",
+             "email" => "required|unique:users,email," . $user->id,
+             "password" => "required|confirmed|min:8",
+             "role" => "nullable",
+             "address" => "required",
+             "phone" => "required",
+             "avatar" => "image|file|max:2000"
+         ]);
+     
+         if ($request->hasFile('avatar')) {
+             if ($request->oldImage) {
+                 Storage::delete($request->oldImage);
+             }
+             $validasi['avatar'] = $request->file('avatar')->store('post-images');
+         }
+     
+         $validasi['password'] = bcrypt($validasi['password']);
+     
+         $user->update($validasi);
+     
+         return redirect()->route('users.index');
+     }
+     
     /**
      * Remove the specified resource from storage.
      *

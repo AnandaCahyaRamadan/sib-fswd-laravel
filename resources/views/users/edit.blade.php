@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <form action="{{route('users.edit', $user)}}" method="post" enctype="multipart/form-data">
-        @csrf
+    <form method="post" action="{{route('users.update', $user)}}"  enctype="multipart/form-data">
         @method('put')
+        @csrf
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -75,7 +75,7 @@
    
     <script>
         function previewImage(){
-            const image = document.querySelector('#image');
+            const image = document.querySelector('#avatar');
             const imgPreview = document.querySelector('.img-preview');
             imgPreview.style.display = 'block';
             const oFReader = new FileReader();

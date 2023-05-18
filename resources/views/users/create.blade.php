@@ -74,7 +74,7 @@
    
     <script>
         function previewImage(){
-            const image = document.querySelector('#image');
+            const image = document.querySelector('#avatar');
             const imgPreview = document.querySelector('.img-preview');
             imgPreview.style.display = 'block';
             const oFReader = new FileReader();
