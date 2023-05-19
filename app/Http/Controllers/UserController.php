@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -41,19 +43,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validasi = $request->validate([
-                "name" => "required",
-                "email" => "required|unique:users,email",
-                "password" => "required|confirmed|min:8",
-                "role" => "nullable",
-                "address" => "required",
-                "phone" => "required",
-                "avatar" => "image|file|max:2000"
-            ]);
-        if ($request->file('avatar')){
-            $validasi ['avatar'] = $request->file('avatar')->store('post-avatar');
+            "name" => "required",
+            "email" => "required|unique:users,email",
+            "password" => "required|confirmed|min:8",
+            "address" => "required",
+            "phone" => "required",
+            "avatar" => "image|file|max:2000",
+            "role_id" => "required" // Menambahkan validasi role_id
+        ]);
+
+        if ($request->file('avatar')) {
+            $validasi['avatar'] = $request->file('avatar')->store('post-avatar');
         }
+
         $validasi['password'] = bcrypt($validasi['password']);
+
         User::create($validasi);
+
         return redirect()->route('users.index');
     }
 
@@ -63,9 +69,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('users.show', ['user' => $user], compact('roles'));
     }
 
     /**
@@ -74,12 +81,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $user = User::find($id);    
-        return view('users.edit', [
-            'user' => $user
-        ]);
+    public function edit(User $user)
+    {  
+        $roles = Role::all();
+        return view('users.edit', ['user' => $user], compact('roles'));
     }
 
     /**
@@ -96,7 +101,7 @@ class UserController extends Controller
              "name" => "required",
              "email" => "required|unique:users,email," . $user->id,
              "password" => "required|confirmed|min:8",
-             "role" => "nullable",
+             "role_id" => "required",
              "address" => "required",
              "phone" => "required",
              "avatar" => "image|file|max:2000"
@@ -122,13 +127,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
-    
-        if ($id == $request->user()->id) return redirect()->route('users.index')
-            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
-    
         if ($user) $user->delete();
     
         return redirect()->route('users.index')

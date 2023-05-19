@@ -25,7 +25,7 @@
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>
-                                    <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{route('users.show', $user)}}" class="btn btn-primary btn-xs">
                                         Detail
                                     </a>
                                     <a href="{{route('users.edit', $user)}}" class="btn btn-warning btn-xs">
@@ -41,7 +41,7 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->phone}}</td>
-                                <td>{{$user->role}}</td>
+                                <td>{{$user->roles->role_name}}</td>
                             </tr>
                             
                         @endforeach

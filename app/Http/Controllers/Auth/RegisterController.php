@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -57,6 +57,7 @@ class RegisterController extends Controller
             'address' => ['string'],
             'phone' => ['string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id' => ['required']
         ]);
         
     }
@@ -80,10 +81,18 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'address' => $data['address'],
+            'role_id' => $data['role_id'],
             'avatar' => $avatarPath,
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm(){
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
+    }
+
+
     /**
      * Handle a registration request for the application.
      *

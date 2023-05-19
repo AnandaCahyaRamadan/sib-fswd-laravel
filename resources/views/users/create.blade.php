@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
+                    <h2>Tambah</h2>
                     <div class="form-group mb-2">
                         <label for="name">Nama</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Nama lengkap" name="name">
@@ -33,7 +33,11 @@
 
                     <div class="form-group mb-2">
                         <label for="role">Role</label>
-                        <input type="role" class="form-control @error('role') is-invalid @enderror" id="role" placeholder="Masukkan role" name="role">
+                        <select name="role_id" id="role_id">
+                            @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->role_name }}</option>
+                            @endforeach
+                        </select>
                         @error('role') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
