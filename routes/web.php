@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 route::resource('/dashboard', DashboardController::class)->middleware('auth');
 Route::get('/',[\App\Http\Controllers\LandingController::class, 'index']);
-// Route::get('/', function (){
-//     return view('landing');
-// });
+
 Auth::routes();
 Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->middleware('auth');
 Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('auth');
