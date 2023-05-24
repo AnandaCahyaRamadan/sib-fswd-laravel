@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <form method="post" action="{{route('users.show', $user)}}"  enctype="multipart/form-data">
         @method('put')
         @csrf

@@ -1,8 +1,9 @@
 @extends('layouts.main')
 @section('content')
+
                     <div class="card mb-4 mt-3">
                             <div class="card-header">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a>
+                                <a href="{{ route('products.create') }}" class="btn btn-primary">Tambah</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -10,35 +11,35 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Aksi</th>
-                                            <th>Avatar</th>
-                                            <th>Nama</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Role</th>
+                                            <th>Gambar</th>
+                                            <th>Nama Produk</th>
+                                            <th>Deskripsi</th>
+                                            <th>Harga</th>
+                                            <th>Kategori</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($users as $key => $user)
+                                        @foreach($products as $key => $product)
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
-                                                <a href="{{route('users.show', $user)}}" class="btn btn-primary btn-xs">
+                                                <a href="{{ route ('products.show', $product) }}" class="btn btn-primary btn-xs">
                                                     Detail
                                                 </a>
-                                                <a href="{{route('users.edit', $user)}}" class="btn btn-warning btn-xs">
+                                                <a href="{{ route('products.edit', $product) }}" class="btn btn-warning btn-xs">
                                                     Edit
                                                 </a>
-                                                <form class='d-inline' action="{{route('users.destroy', $user)}}" method="post">
+                                                <form class='d-inline' action="{{ route('products.destroy', $product) }}" method="post">
                                                     @method('delete')
                                                     @csrf
                                                     <button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')">Delete</button>
                                                 </form>
                                             </td>
-                                            <td><img src="{{ asset('storage/' . $user->avatar )}}" class="img-fluid rounded-circle" width="100px"></td>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->phone}}</td>
-                                            <td>{{$user->roles->role_name}}</td>
+                                            <td><img src="{{ asset('storage/' . $product->gambar )}}" class="img-fluid rounded-circle" width="100px"></td>
+                                            <td>{{ $product->nama_product }}</td>
+                                            <td>{{ $product->deskripsi }}</td>
+                                            <td>{{ $product->harga }}</td>
+                                            <td>{{ $product->categories->category_name }}</td>
                                         </tr>
                                         
                                     @endforeach

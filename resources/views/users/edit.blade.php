@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <form method="post" action="{{route('users.update', $user)}}"  enctype="multipart/form-data">
         @method('put')
         @csrf
@@ -44,7 +44,12 @@
 
                     <div class="form-group mb-2">
                         <label for="avatar" class="form-label">Pilih Gambar</label>
+                        <input type="hidden" name="oldImage" value="{{ $user->avatar  }}">
+                        @if($user->avatar)
+                        <img src="{{ asset('storage/' . $user->avatar) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                        @else
                         <img class="img-preview img-fluid mb-3 col-sm-5">
+                        @endif
                         <input class="form-control @error('avatar') is-invalid @enderror"  type="file" id="avatar" name="avatar"
                         onchange="previewImage()">
                         @error('avatar')
@@ -68,9 +73,6 @@
 
                 <div class="card-footer mb-2">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('users.index')}}" class="btn btn-default">
-                        Batal
-                    </a>
                 </div>
             </div>
         </div>

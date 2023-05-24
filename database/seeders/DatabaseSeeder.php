@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Role;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,12 @@ class DatabaseSeeder extends Seeder
         ]);
         Role::create([
             'role_name' => 'staff',
+        ]);
+        Category::create([
+            'category_name' => 'Makanan Kucing',
+        ]);
+        Category::create([
+            'category_name' => 'Keperluan Kucing',
         ]);
     }
 }

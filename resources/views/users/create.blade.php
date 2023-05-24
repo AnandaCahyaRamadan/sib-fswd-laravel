@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="row">
@@ -67,9 +67,6 @@
 
                 <div class="card-footer mb-2">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="{{route('users.index')}}" class="btn btn-default">
-                        Batal
-                    </a>
                 </div>
             </div>
         </div>
