@@ -3,7 +3,7 @@
 
                     <div class="card mb-4 mt-3">
                         <div class="card-header">
-                            <a href="{{ route('categories.create') }}" class="btn btn-success">Tambah</a>
+                            <a href="{{ route('sliders.create') }}" class="btn btn-success">Tambah</a>
                         </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -11,24 +11,24 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Aksi</th>
-                                            <th>Category</th>
+                                            <th>Gambar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($categories as $key => $category)
+                                        @foreach($sliders as $key => $slider)
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
-                                                <a href="{{ route('categories.edit', $category) }}" class="btn btn-warning btn-xs">
+                                                <a href="{{ route('sliders.edit', $slider) }}" class="btn btn-warning btn-xs">
                                                     Edit
                                                 </a>
-                                                <form class='d-inline' action="{{ route('categories.destroy', $category) }}" method="post">
+                                                <form class='d-inline' action="{{ route('sliders.destroy', $slider) }}" method="post">
                                                     @method('delete')
                                                     @csrf
                                                     <button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')">Delete</button>
                                                 </form>
                                             </td>
-                                            <td>{{$category->category_name}}</td>
+                                            <td><img src="{{ asset('storage/' . $slider->gambar )}}" alt="" width="400em"></td>
                                         </tr> 
                                     @endforeach
                                     </tbody>

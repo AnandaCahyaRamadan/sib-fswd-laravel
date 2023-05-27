@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="card-footer mb-2">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </div>
         </div>

@@ -46,7 +46,7 @@ class ProductController extends Controller
         $validasi = $request->validate([
             'nama_product' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'image|file|max:2000',
+            'gambar' => 'image|file|max:4000',
             'harga' => 'integer|required',
             'category_id' => 'required'
         ]);
@@ -97,7 +97,7 @@ class ProductController extends Controller
         $validasi = $request->validate([
             'nama_product' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'image|file|max:2000',
+            'gambar' => 'image|file|max:4000',
             'harga' => 'integer|required',
             'category_id' => 'required'
         ]);
@@ -108,7 +108,7 @@ class ProductController extends Controller
             $validasi['gambar'] = $request->file('gambar')->store('product-image');
         }
         $product->update($validasi);
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->withInput();
     }
 
     /**

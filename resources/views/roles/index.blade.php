@@ -2,15 +2,15 @@
 @section('content')
 
                     <div class="card mb-4 mt-3">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                List Role
-                            </div>
+                        <div class="card-header">
+                            <a href="{{ route('roles.create') }}" class="btn btn-success">Tambah</a>
+                        </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Aksi</th>
                                             <th>Role</th>
                                         </tr>
                                     </thead>
@@ -18,6 +18,16 @@
                                         @foreach($roles as $key => $role)
                                         <tr>
                                             <td>{{$key+1}}</td>
+                                            <td>
+                                                <a href="{{ route('roles.edit', $role) }}" class="btn btn-warning btn-xs">
+                                                    Edit
+                                                </a>
+                                                <form class='d-inline' action="{{ route('roles.destroy', $role) }}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')">Delete</button>
+                                                </form>
+                                            </td>
                                             <td>{{$role->role_name}}</td>
                                         </tr> 
                                     @endforeach

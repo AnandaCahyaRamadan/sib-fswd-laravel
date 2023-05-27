@@ -7,9 +7,18 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+  
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{ asset ('css/style.css') }}" rel="stylesheet" />
         <script src="{{ asset ('https://use.fontawesome.com/releases/v6.3.0/js/all.js') }}" crossorigin="anonymous"></script>
+        <style>
+            body {
+             font-family: 'Poppins', sans-serif;
+             }
+         </style>
     </head>
     <body class="sb-nav-fixed">
       @include('partials.header')
@@ -23,7 +32,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Mimi Petshop 2023</div>
+                            <div class="text-muted">Copyright &copy; Mimi Kitty 2023</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

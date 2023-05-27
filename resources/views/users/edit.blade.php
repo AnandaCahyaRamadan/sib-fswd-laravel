@@ -36,7 +36,7 @@
                         <label for="role">Role</label>
                         <select name="role_id" id="role_id">
                             @foreach ($roles as $role)
-                            <option value="{{$role->id ?? old('id')}}" >{{ $role->role_name }}</option>
+                            <option value="{{$role->id }}" {{  ($user->role_id == $role->id) ? 'selected' : '' }}>{{ $role->role_name }}</option>
                             @endforeach
                         </select>
                         @error('role') <span class="text-danger">{{$message}}</span> @enderror
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="card-footer mb-2">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </div>
         </div>
@@ -88,8 +88,7 @@
             oFReader.readAsDataURL(image.files[0]);
             oFReader.onload = function(oFREvent){
             imgPreview.src = oFREvent.target.result;
-      }
-       
+      } 
     }
     </script>
 @stop

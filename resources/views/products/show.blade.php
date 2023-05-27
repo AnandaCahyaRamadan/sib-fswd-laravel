@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="card-footer mb-2">
-                    <a href="{{ route ('products.show', $product) }}" class="btn btn-primary btn-xs">
+                    <a href="{{ route ('products.show', $product) }}" class="btn btn-success btn-xs">
                         Detail
                     </a>
                     <a href="{{ route('products.edit', $product) }}" class="btn btn-warning btn-xs">

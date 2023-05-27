@@ -2,7 +2,7 @@
 @section('content')
                     <div class="card mb-4 mt-3">
                             <div class="card-header">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-success">Tambah</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -22,7 +22,7 @@
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
-                                                <a href="{{route('users.show', $user)}}" class="btn btn-primary btn-xs">
+                                                <a href="{{route('users.show', $user)}}" class="btn btn-success btn-xs">
                                                     Detail
                                                 </a>
                                                 <a href="{{route('users.edit', $user)}}" class="btn btn-warning btn-xs">

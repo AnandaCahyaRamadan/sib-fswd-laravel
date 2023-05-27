@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="card-footer mb-2">
-                    <a href="{{route('users.show', $user)}}" class="btn btn-primary btn-xs">
+                    <a href="{{route('users.show', $user)}}" class="btn btn-success btn-xs">
                         Detail
                     </a>
                     <a href="{{route('users.edit', $user)}}" class="btn btn-warning btn-xs">

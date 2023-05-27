@@ -127,8 +127,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, $id)
     {
+        $user = User::find($id);
+    
+        if ($id == $request->user()->id) return redirect()->route('users.index')
+            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
+    
         if ($user) $user->delete();
     
         return redirect()->route('users.index')

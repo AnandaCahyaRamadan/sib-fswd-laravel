@@ -3,7 +3,7 @@
 
                     <div class="card mb-4 mt-3">
                             <div class="card-header">
-                                <a href="{{ route('products.create') }}" class="btn btn-primary">Tambah</a>
+                                <a href="{{ route('products.create') }}" class="btn btn-success">Tambah</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -13,7 +13,6 @@
                                             <th>Aksi</th>
                                             <th>Gambar</th>
                                             <th>Nama Produk</th>
-                                            <th>Deskripsi</th>
                                             <th>Harga</th>
                                             <th>Kategori</th>
                                         </tr>
@@ -23,7 +22,7 @@
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
-                                                <a href="{{ route ('products.show', $product) }}" class="btn btn-primary btn-xs">
+                                                <a href="{{ route ('products.show', $product) }}" class="btn btn-success btn-xs">
                                                     Detail
                                                 </a>
                                                 <a href="{{ route('products.edit', $product) }}" class="btn btn-warning btn-xs">
@@ -37,7 +36,6 @@
                                             </td>
                                             <td><img src="{{ asset('storage/' . $product->gambar )}}" class="img-fluid rounded-circle" width="100px"></td>
                                             <td>{{ $product->nama_product }}</td>
-                                            <td>{{ $product->deskripsi }}</td>
                                             <td>{{ $product->harga }}</td>
                                             <td>{{ $product->categories->category_name }}</td>
                                         </tr>
