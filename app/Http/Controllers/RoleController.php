@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class RoleController extends Controller
 {
@@ -92,8 +93,17 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Role $role)
-    {
-        if ($role) $role->delete();
-        return redirect()->route('roles.index');
+    { 
+        try {
+            
+            if ($role) $role->delete();
+            return redirect()->route('roles.index');
+            
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                $errorMessage = "Tidak dapat menghapus data karena terdapat ketergantungan data yang terkait.";
+                return redirect()->back()->with('error', $errorMessage);
+            }
+        }
     }
 }

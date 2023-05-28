@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class CategoryController extends Controller
 {
@@ -93,7 +94,16 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->route('categories.index');
+        try {
+            
+            $category->delete();
+            return redirect()->route('categories.index');
+            
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] === 1451) {
+                $errorMessage = "Tidak dapat menghapus data karena terdapat ketergantungan data yang terkait.";
+                return redirect()->back()->with('error', $errorMessage);
+            }
+        }
     }
 }
