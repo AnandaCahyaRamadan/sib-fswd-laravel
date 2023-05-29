@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -48,7 +49,8 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'gambar' => 'image|file|max:4000',
             'harga' => 'integer|required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'rating' => 'required'
         ]);
         if ($request->file('gambar')){
             $validasi['gambar'] = $request->file('gambar')->store('product-image');
@@ -79,10 +81,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        return view('products.edit', [
-            "product" => $product
-        ], compact('categories'));
+            $categories = Category::all();
+            return view('products.edit', [
+                "product" => $product
+            ], compact('categories'));
+
+            // if (! Gate::allows('admin', $product)) {
+            //     abort(403);
+            // }
     }
 
     /**
@@ -99,7 +105,8 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'gambar' => 'image|file|max:4000',
             'harga' => 'integer|required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'rating' => 'required'
         ]);
         if ($request->hasFile('gambar')){
             if ($request->oldImage){

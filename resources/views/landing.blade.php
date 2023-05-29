@@ -128,11 +128,9 @@
                               <p class="card-text my-1 text-warning text-bold">Rp. {{ $product->harga }}</p>
                               <small class="card-text">{{ $product->deskripsi }}</small>
                               <div class="mt-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
+                                @for ($i = 1 ; $i <= $product->rating ; $i++)
+                                  <i class="fa fa-star text-warning"></i>
+                                @endfor
                               </div>
                               <div class="mt-4">
                                 <a href="https://wa.me/6281999651534" class="btn btn-warning fw-bold" style="width:100%"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>

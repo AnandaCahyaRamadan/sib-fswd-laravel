@@ -27,6 +27,12 @@
                     </div>
 
                     <div class="form-group mb-2">
+                        <label for="rating">Rating</label>
+                        <input type="number" class="form-control @error('rating') is-invalid @enderror" id="rating" placeholder="Masukkan rating" name="rating">
+                        @error('rating') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+
+                    <div class="form-group mb-2">
                         <label for="role">Category</label>
                         <select name="category_id" id="category_id">
                             @foreach ($categories as $category)

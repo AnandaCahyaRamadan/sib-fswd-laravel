@@ -28,11 +28,5 @@ class DatabaseSeeder extends Seeder
         Role::create([
             'role_name' => 'staff',
         ]);
-        Category::create([
-            'category_name' => 'Makanan Kucing',
-        ]);
-        Category::create([
-            'category_name' => 'Keperluan Kucing',
-        ]);
     }
 }

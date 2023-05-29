@@ -28,6 +28,12 @@
                     </div>
 
                     <div class="form-group mb-2">
+                        <label for="rating">Rating</label>
+                        <input type="number" class="form-control @error('rating') is-invalid @enderror" id="rating" placeholder="Masukkan rating" name="rating" value="{{ $product->rating ?? old('rating') }}">
+                        @error('rating') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+
+                    <div class="form-group mb-2">
                         <label for="role">Category</label>
                         <select name="category_id" id="category_id">
                             @foreach ($categories as $category)
@@ -43,7 +49,12 @@
 
                     <div class="form-group mb-2">
                         <label for="gambar" class="form-label">Pilih Gambar</label>
+                        <input type="hidden" name="oldImage" value="{{ $product->gambar  }}">
+                        @if($product->gambar)
+                        <img src="{{ asset('storage/' . $product->gambar) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                        @else
                         <img class="img-preview img-fluid mb-3 col-sm-5">
+                        @endif
                         <input class="form-control @error('gambar') is-invalid @enderror"  type="file" id="gambar" name="gambar"
                         onchange="previewImage()">
                         @error('gambar')
