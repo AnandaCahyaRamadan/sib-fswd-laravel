@@ -26,7 +26,7 @@
                           <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products">Products</a>
                       </nav>
                   </div>
-                  @can('admin')
+
                   <a class="nav-link {{ Request::is('roles') || Request::is('users') ? 'active' : '' }}  collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                       <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                       User
@@ -38,7 +38,6 @@
                           <a class="nav-link {{ Request::is('users') ? 'active' : '' }}" href="{{ route('users.index')}}">Tambah user</a>
                       </nav>
                   </div>
-                  @endcan
               </div>
           </div>
           <div class="sb-sidenav-footer">
