@@ -131,7 +131,7 @@
                                 @for ($i = 1 ; $i <= $product->rating ; $i++)
                                  <i class="fa fa-star text-warning"></i>
                                 @endfor
-                                <span>Rating {{ $product->rating }}/5</span>
+                                <span> {{ $product->rating }}/5</span>
                               </div>
                               <div class="mt-4">
                                 <a href="https://wa.me/6281999651534" class="btn btn-warning fw-bold" style="width:100%"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
@@ -153,7 +153,7 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                         <img src="https://i.postimg.cc/MTcywB5V/AA.png" alt="" width="60%">
                         </h6>
-                        <p>Mimi Kitty adalah toko yang menjual berbagai macam kebutuhan kucing seperti makanan obat dll.</p>
+                        <p>Mimi Kitty adalah cat shop yang menjual berbagai macam kebutuhan kucing seperti makanan obat dll.</p>
                     </div>
    
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
