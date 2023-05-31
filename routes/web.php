@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-route::resource('/dashboard', DashboardController::class)->middleware('auth');
+route::resource('/dashboard', DashboardController::class)->middleware(['auth','admin:staff']);
 Route::get('/',[\App\Http\Controllers\LandingController::class, 'index']);
 Route::get('/search',[\App\Http\Controllers\LandingController::class, 'search'])->name('search');
 Auth::routes();

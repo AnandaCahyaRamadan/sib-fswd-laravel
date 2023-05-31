@@ -3,11 +3,13 @@
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
           <div class="sb-sidenav-menu">
               <div class="nav">
+                @if (Auth::check() && (Auth::user()->roles()->where('role_name', 'admin')->exists() || Auth::user()->roles()->where('role_name', 'staff')->exists()))
                   <div class="sb-sidenav-menu-heading">Core</div>
                   <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard">
                       <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                       Dashboard
                   </a>
+                @endif
                     @if (Auth::check() && (Auth::user()->roles()->where('role_name', 'admin')->exists() || Auth::user()->roles()->where('role_name', 'staff')->exists()))
                         <a class="nav-link {{ Request::is('sliders') ? 'active' : '' }}" href="/sliders">
                             <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>

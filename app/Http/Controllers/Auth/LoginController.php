@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -38,4 +39,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
+    protected function authenticated()
+    {
+        if (Auth::check()){
+            if (Auth::user()->roles->role_name == 'user'){
+                return redirect()->intended('/products'); 
+            }
+        }
+        else {
+            return redirect()->intended('/dashboard');  
+        }
+    }
 }
