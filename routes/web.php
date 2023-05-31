@@ -43,7 +43,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // Menampilkan daftar pengguna
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->middleware('auth')->name('users.index');
+Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])
+    ->middleware(['auth', 'admin:staff'])
+    ->name('users.index');
 Route::get('/users/create', [\App\Http\Controllers\UserController::class, 'create'])->middleware('auth','admin')->name('users.create');
 Route::post('/users/store', [\App\Http\Controllers\UserController::class, 'store'])->middleware('auth','admin')->name('users.store');
 Route::get('/users/{user}', [\App\Http\Controllers\UserController::class, 'show'])->middleware('auth','admin')->name('users.show');

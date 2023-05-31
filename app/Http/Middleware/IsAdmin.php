@@ -16,9 +16,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user()->roles()->where('role_name', 'admin')->exists()) {
+        if ($request->user()->roles->role_name == 'admin') {
             return $next($request);
         }
-        abort(403, 'Access denied. Only admins are allowed.');
+        abort(403);
     }
 }
