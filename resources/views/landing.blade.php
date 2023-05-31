@@ -21,11 +21,12 @@
        body {
         font-family: 'Poppins', sans-serif;
         }
+        
     </style>
 </head>
 <body>
           <section id="navbar">
-            <nav class="navbar navbar-expand-lg bg-dark shadow-lg">
+            <nav class="navbar navbar-inner navbar-expand-lg bg-dark shadow-lg">
               <div class="container">
                 <a class="navbar-brand" href="#"><img src="https://i.postimg.cc/MTcywB5V/AA.png" alt="" width="150px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +65,7 @@
                       <div class="carousel-item @if ($key == 0) active @endif">
                         <img src="{{ asset('storage/'. $slider->gambar) }}" class="d-block w-100" alt="Slider Image">
                         <div class="carousel-caption d-none d-md-block">
-                          <h5>{{ $slider->caption }}</h5>
+                          <h1>{{ $slider->caption }}</h1>
                           <p>{{ $slider->deskripsi }}</p>
                         </div>
                       </div>

@@ -9,7 +9,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                        
-                        <div class="row mb-3 ">
+                        <div class="row mb-2 ">
                             <div class="col-md-12 pb-5 pt-5 text-center">
                                 <img src="https://i.postimg.cc/1zsqTwxv/KAKI.png" alt="" width="40%">
                             </div>
