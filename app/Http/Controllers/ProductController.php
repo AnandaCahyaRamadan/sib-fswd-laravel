@@ -85,10 +85,6 @@ class ProductController extends Controller
             return view('products.edit', [
                 "product" => $product
             ], compact('categories'));
-
-            // if (! Gate::allows('admin', $product)) {
-            //     abort(403);
-            // }
     }
 
     /**
