@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,9 +20,17 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.index', [
-            'products' => $products
-        ]);
+        if (Auth::user()->roles->role_name == 'user') {
+            return view('products.card', [
+                'products' => $products
+            ]);
+        }
+        else {
+            return view('products.index', [
+                'products' => $products
+            ]);
+        }
+
     }
 
     /**

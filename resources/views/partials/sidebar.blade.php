@@ -16,7 +16,8 @@
                             Slider
                         </a>
                     @endif
-                    <div class="sb-sidenav-menu-heading">Management</div>
+                <div class="sb-sidenav-menu-heading">Management</div>
+                @if (Auth::check() && (Auth::user()->roles()->where('role_name', 'admin')->exists() || Auth::user()->roles()->where('role_name', 'staff')->exists()))
                   <a class="nav-link {{ Request::is('categories') || Request::is('products') ? 'active' : '' }} collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
                       <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                       Products
@@ -24,12 +25,13 @@
                   </a>
                   <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                       <nav class="sb-sidenav-menu-nested nav">
-                        @if (Auth::check() && (Auth::user()->roles()->where('role_name', 'admin')->exists() || Auth::user()->roles()->where('role_name', 'staff')->exists()))
-                          <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Category</a>
-                        @endif
-                          <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products">Products</a>
+                        <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Category</a>
+                        <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products">Products</a>
                       </nav>
                   </div>
+                @else
+                  <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products"> Products</a>
+                @endif
                   @if (Auth::check() && (Auth::user()->roles()->where('role_name', 'admin')->exists() || Auth::user()->roles()->where('role_name', 'staff')->exists()))
                   <a class="nav-link {{ Request::is('roles') || Request::is('users') ? 'active' : '' }}  collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                       <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
