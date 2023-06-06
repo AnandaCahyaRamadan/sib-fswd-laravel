@@ -95,7 +95,6 @@ class ProductController extends Controller
 
         public function update(Request $request, $id)
         {
-            $product = Product::findOrFail($id);
             $validator = Validator::make($request->all(), [
                 'nama_product' => 'required|min:3',
                 'deskripsi' => 'required',
@@ -112,8 +111,8 @@ class ProductController extends Controller
                     'data' => $validator->errors()
                 ], 401);
             } else {
+
                 $product = Product::findOrFail($id);
-            
                 if ($request->file('gambar')) {
                     // Hapus gambar lama jika ada
                     if ($product->gambar) {
