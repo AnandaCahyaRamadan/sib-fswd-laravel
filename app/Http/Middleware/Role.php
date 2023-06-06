@@ -23,6 +23,6 @@ class Role
         if ($user && in_array($user->roles->role_name, $roles)) {
             return $next($request);
         }
-        abort(403, 'Unauthorized');
+        abort(403);
     }
 }

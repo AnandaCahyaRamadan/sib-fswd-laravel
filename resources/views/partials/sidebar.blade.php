@@ -30,7 +30,10 @@
                       </nav>
                   </div>
                 @else
-                  <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products"> Products</a>
+                <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="/products">
+                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                    Produk
+                </a>
                 @endif
                   @if (Auth::check() && (Auth::user()->roles()->where('role_name', 'admin')->exists() || Auth::user()->roles()->where('role_name', 'staff')->exists()))
                   <a class="nav-link {{ Request::is('roles') || Request::is('users') ? 'active' : '' }}  collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
