@@ -74,7 +74,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $categories = Category::find($id);
+        $categories = Category::all();
         
         if ($product) {
             return response()->json([
@@ -118,9 +118,10 @@ class ProductController extends Controller
                     if ($product->gambar) {
                         Storage::delete($product->gambar);
                     }
-            
                     $gambar = $request->file('gambar')->store('product-image');
-                    $product->gambar = $gambar;
+                }
+                else {
+                    $product->gambar;
                 }
             
                 $product->nama_product = $request->input('nama_product');
