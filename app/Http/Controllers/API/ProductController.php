@@ -110,15 +110,14 @@ class ProductController extends Controller
                     'message' => 'Silahkan isi bidang dengan sesuai',
                     'data' => $validator->errors()
                 ], 401);
-            } else {
-
+            } 
+            else {
                 $product = Product::findOrFail($id);
                 if ($request->file('gambar')) {
-                    // Hapus gambar lama jika ada
                     if ($product->gambar) {
                         Storage::delete($product->gambar);
                     }
-                    $gambar = $request->file('gambar')->store('product-image');
+                    $request->file('gambar')->store('product-image');
                 }
                 else {
                     $product->gambar;
